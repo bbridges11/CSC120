@@ -23,36 +23,7 @@ public class Problem1 {
             for(int i = 0; i < T; i++) {
                 //read next line
                 inLine = br.readLine();
-                int numOfBuses = Integer.parseInt(inLine);
-
-                //read next line
-                inLine = br.readLine();
-
-                String[] tempList = inLine.split(" ");
-                int[] tokens = new int[tempList.length];
-
-                for(int x = 0; x < tempList.length; x++) {
-                    tokens[x] = Integer.parseInt(tempList[x]);
-                }
-
-                inLine = br.readLine();
-                int P = Integer.parseInt(inLine);
-                System.out.println(P);
-
-                inLine = br.readLine();
-                int testCase = Integer.parseInt(inLine);
-                int j;
-                for(j = 0; j < tokens.length; j++) {
-                    int pos = tokens[j*2];
-                    int nextPos = tokens[j*2 + 1];
-
-                    if(testCase >= pos && testCase <= nextPos) {
-                        count++;
-                    }
-                }
-                System.out.println(count);
-                j = 0;
-                count = 0;
+                
             }
             br.close();
             fr.close();
