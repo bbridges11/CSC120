@@ -10,7 +10,6 @@ public class MathInteract {
         num2 = input.nextDouble();
 
         operate(num1, num2);
-
     }
 
     public static void operate(double num1, double num2) {
@@ -22,7 +21,7 @@ public class MathInteract {
         System.out.print("Enter operation: ");
         operator = input.next();
 
-        while(operator.length() == 1) {
+        while(operator.charAt(0) == '+' || operator.charAt(0) == '-'  || operator.charAt(0) == '%' || operator.charAt(0) == '/' || operator.charAt(0) == '*') {
             switch(operator) {
                 case "+": System.out.printf("%.8f%n", num1 + num2); break;
                 case "-": System.out.printf("%.8f%n", num1 - num2); break;
@@ -35,7 +34,3 @@ public class MathInteract {
         }
     }
 }
-
-/*
-
-*/

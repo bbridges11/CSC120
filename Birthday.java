@@ -13,14 +13,14 @@ public class Birthday {
         nReps = input.nextInt();
 
         output = experiment1(nPeople, nReps);
-        System.out.printf("\nProbability of Hits: " + "%.3f", output);
+        System.out.printf("\nProbability of Hits: " + "%.3f %n", output);
     }
 
     public static int[] oneTrial(int nPeople) {
         int [] theCounts = new int [365];
         int random;
 
-        for(int i = 1; i < nPeople; i++) {
+        for(int i = 0; i < nPeople; i++) {
            random = (int)(Math.random() * theCounts.length);
            theCounts[random]++;
         }
