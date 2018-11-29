@@ -1,73 +1,89 @@
 import java.util.*;
 
 public class Election {
-    public static String[] names;
-    public static int[] counts;
-    public static String[] newNames;
-    public static int[] newCounts;
+
+    public static String[] names = new String[0];
+    public static String[] newNames = new String[0];
+    public static int[] counts = new int[0];
+    public static int[] newCounts = new int[0];
 
     public static void main(String[] args) {
-        
+        Scanner input = new Scanner(System.in);
+        String name;
+
         System.out.println("########################################### \n" +
-        "# Enter the votes, one vote per line. # \n" +
+        "# Enter the votes, one vote per line.     # \n" +
         "# End with either CTRL-D or an empty line.# \n" +
         "###########################################");
-                Scanner input = new Scanner(System.in);
-        String name;
+
+
         while(input.hasNext()) {
-            int i=0;
             name = input.nextLine();
-            i++;
-            names = new String[ i ];
-            counts = new int[ i ];
-            if(name == "") {
-                break;
+
+            if(name.equals("")) {
+                    break;
             } else {
-                find(names, name);
+                int find = find(names, name);
+                if(find >= 0) {
+                        counts[find]++;
+                } else {
+                    names = addName(names, name);
+                    counts = addNewCount(counts);
+                }
             }
         }
-        findWinner(newNames, newCounts);
+        findWinner(names, counts);
     }
-    public static int find( String[] names, String name ) {
+
+    public static int find(String[] names, String name) {
         for(int i = 0; i < names.length - 1; i++) {
-            if(names[i] == name) {
-                counts[i]++;
+            if(names[i].equals(name)) {
                 return i;
             }
-            else{
-                addName(names, name);
-                addNewCount(counts);
-            }
-        }    
-        return -1;
-    } 
-    public static String[] addName( String[] names, String name ) {
-        int x = name.length() + 1;
-        newNames = new String[x];
-        for(int i = 0; i <= x- 1; i++){
-            newNames[i] = names[i];
         }
-        newNames[x] = name;
+        return -1;
+    }
+
+    public static String[] addName(String[] names, String name) {
+
+        String[] newNames = Arrays.copyOf(names, names.length + 1);
+
+        newNames[newNames.length - 1] = name;
+        /*
+        String[] newNames = new String[names.length + 1];
+
+
+        for(int i = 0; i < names.length; i++) {
+                newNames[i] = names[i];
+        }
+        */
+
         return newNames;
     }
-    
-    public static int[] addNewCount( int[] counts ) {
-        newCounts = counts;
-        newCounts[0] = 1;
+
+    public static int[] addNewCount(int[] counts) {
+        int[] newCounts = Arrays.copyOf(counts, counts.length + 1);
+
+        newCounts[newCounts.length - 1] = 1;
+
+
         return newCounts;
     }
-    
-    public static void findWinner(String[] names, int[] newcounts ) {
-        int maxCount = 0;
-        String theWinner;
-        int i;
-        for(i = 0; i < newcounts.length; i++) {
-            if(newCounts[i] > maxCount) {
-            maxCount = newcounts[i];
-            theWinner = newNames[i];
+
+    public static void findWinner(String[] names, int[] counts) {
+        int temp = 0, maxCount = 0;
+        String theWinner = "";
+
+        //System.out.println(newCounts);
+        for(int i = 0; i < counts.length - 1; i++) {
+            if(counts[i] > maxCount) {
+                maxCount = counts[i];
+                theWinner = names[i];
             }
+        System.out.println(names[i] + " recieved " + counts[i] + " votes.");
         }
-        System.out.println( newNames[i] + " received " + newCounts[i] + " votes.");
+
         System.out.println("--------");
-    }    
+        System.out.println("The winner is " + theWinner);
+    }
 }
