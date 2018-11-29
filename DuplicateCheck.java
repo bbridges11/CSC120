@@ -9,7 +9,7 @@ public class DuplicateCheck {
        System.out.println(duplicateCheck2(arr)); 
     }
 
-    public static boolean duplicateCheck(int[] arr) {
+    public static boolean duplicateCheck(int[] arr) {//best time and space efficent method O of N time complexity
         HashSet<Integer> check = new HashSet<Integer>();
 
         for(int i: arr) {
@@ -21,7 +21,7 @@ public class DuplicateCheck {
         return false;
     }
 
-    public static boolean duplicateCheck1(int[] arr) {
+    public static boolean duplicateCheck1(int[] arr) {//by sorting array the time complexity increased by copying the array the space complexity increased
         int[] newArr = Arrays.copyOf(arr, arr.length);
 
         Arrays.sort(newArr);
@@ -34,7 +34,7 @@ public class DuplicateCheck {
         return false;
     }
     
-    public static boolean duplicateCheck2(int[] arr) {
+    public static boolean duplicateCheck2(int[] arr) {//least efficent with a O of N squared time complexity
         for(int i = 0; i < arr.length - 1; i++) {
             for(int j = 1; j < arr.length - 1; j++) {
                 if(i != j && arr[i] == arr[j]) {
